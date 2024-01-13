@@ -230,3 +230,49 @@ h1 {
     transform: translateY(0%);
   }
 }
+/* Keyboard styles */
+.keyboard {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.keyboard .keyboard-line {
+  display: flex;
+  flex-direction: row;
+}
+
+.keyboard .keyboard-letter {
+  display: grid;
+  align-content: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 3px;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+}
+
+.keyboard-letter.correct {
+  color: white;
+  background-color: var(--color-success);
+}
+
+.keyboard-letter.misplaced {
+  color: white;
+  background-color: var(--color-warning);
+}
+
+.keyboard-letter.incorrect {
+  color: white;
+  background-color: var(--color-gray-300);
+}
+
+.keyboard-letter.unused {
+  background-color: #e6e6e6;
+  color: black;
+}
