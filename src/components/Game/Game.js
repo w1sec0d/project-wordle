@@ -20,12 +20,11 @@ function Game() {
   const [previousGuesses, setPreviousGuesses] = useState(
     Array(NUM_OF_GUESSES_ALLOWED).fill(undefined)
   );
-  // Check previousGuesses
   const [previousGuessesChecked, setPreviousGuessesChecked] = useState([]);
   const [attempts, setAttempts] = useState(0);
-  // Sets game status: running | won | lost
-  const [gameStatus, setGameStatus] = useState("running");
+  const [gameStatus, setGameStatus] = useState("running"); // Handles game status: running | won | lost
 
+  // Handles the submission of a guess. Updating attempts, previousGuesses, and stopping the game if the user won or lost.
   function handleSubmitGuess(guess) {
     let nextAttempts = attempts + 1;
     setAttempts(nextAttempts);
@@ -56,20 +55,24 @@ function Game() {
   }
 
   return (
-    <>
-      <GuessResults
-        previousGuesses={previousGuesses}
-        previousGuessesChecked={previousGuessesChecked}
-      />
-      <GuessInput
-        handleSubmitGuess={handleSubmitGuess}
-        disabled={gameStatus === "won" || gameStatus === "lost"}
-        autoFocus
-      />
-      <Keyboard previousGuessesChecked={previousGuessesChecked} />
-      {gameStatus === "won" && <WonBanner attempts={attempts} />}
-      {gameStatus === "lost" && <LostBanner answer={answer} />}
-    </>
+    <div className="row">
+      <div className="col">
+        <GuessResults
+          previousGuesses={previousGuesses}
+          previousGuessesChecked={previousGuessesChecked}
+        />
+      </div>
+      <div className="col vertical">
+        <GuessInput
+          handleSubmitGuess={handleSubmitGuess}
+          disabled={gameStatus === "won" || gameStatus === "lost"}
+          autoFocus
+        />
+        <Keyboard previousGuessesChecked={previousGuessesChecked} />
+        {gameStatus === "won" && <WonBanner attempts={attempts} />}
+        {gameStatus === "lost" && <LostBanner answer={answer} />}
+      </div>
+    </div>
   );
 }
 
