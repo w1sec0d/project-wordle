@@ -72,22 +72,52 @@ h1 {
   }
 }
 
+/* Global styles */
+:root {
+  --font-size-small: 14px;
+  --font-size-medium: 16px;
+  --font-size-large: 18px;
+}
+
+@media (max-width: 768px) {
+  :root {
+    font-size: var(--font-size-small);
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  :root {
+    font-size: var(--font-size-medium);
+  }
+}
+
+@media (min-width: 1025px) {
+  :root {
+    font-size: var(--font-size-large);
+  }
+}
+
 .game-wrapper {
-  flex: 1;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: var(--game-spacing);
   padding: var(--game-spacing) 32px;
   margin: 0 auto;
   min-width: 250px;
-  max-width: min(500px, 58vh, 100%);
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin: 0 auto;
+  padding: 50px;
 }
 
 .guess-results {
-  flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  min-width: 250px;
+  flex-basis: 30%;
 }
 
 .guess {
@@ -241,20 +271,19 @@ h1 {
 .keyboard .keyboard-line {
   display: flex;
   flex-direction: row;
+  width: 100%;
+  justify-content: center;
 }
 
 .keyboard .keyboard-letter {
-  display: grid;
-  align-content: center;
-  justify-content: center;
-  font-size: 1.2rem;
   font-weight: bold;
   border-radius: 5px;
-  padding: 10px;
   margin: 3px;
   width: 40px;
   height: 40px;
+  line-height: 40px;
   cursor: pointer;
+  text-align: center;
 }
 
 .keyboard-letter.correct {
@@ -275,4 +304,18 @@ h1 {
 .keyboard-letter.unused {
   background-color: #e6e6e6;
   color: black;
+}
+
+.guess {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 4px;
+}
+
+.input-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex-basis: 20%;
+  max-width: 90vw;
 }

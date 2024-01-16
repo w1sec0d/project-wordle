@@ -55,24 +55,22 @@ function Game() {
   }
 
   return (
-    <div className="row">
-      <div className="col">
-        <GuessResults
-          previousGuesses={previousGuesses}
-          previousGuessesChecked={previousGuessesChecked}
-        />
-      </div>
-      <div className="col vertical">
+    <>
+      <GuessResults
+        previousGuesses={previousGuesses}
+        previousGuessesChecked={previousGuessesChecked}
+      />
+      <div className="input-wrapper">
         <GuessInput
           handleSubmitGuess={handleSubmitGuess}
           disabled={gameStatus === "won" || gameStatus === "lost"}
           autoFocus
         />
         <Keyboard previousGuessesChecked={previousGuessesChecked} />
-        {gameStatus === "won" && <WonBanner attempts={attempts} />}
-        {gameStatus === "lost" && <LostBanner answer={answer} />}
       </div>
-    </div>
+      {gameStatus === "won" && <WonBanner attempts={attempts} />}
+      {gameStatus === "lost" && <LostBanner answer={answer} />}
+    </>
   );
 }
 
