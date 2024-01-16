@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { ArrowRight } from "react-feather";
 
-function GuessInput({ handleSubmitGuess }) {
+function GuessInput({ handleSubmitGuess, disabled }) {
   const [guess, setGuess] = useState("");
 
   function handleSubmit(event) {
@@ -27,6 +27,7 @@ function GuessInput({ handleSubmitGuess }) {
           maxLength={5}
           required={true}
           autoFocus={true}
+          disabled={disabled}
         />
         <button type="submit" className="guess-input-icon">
           <ArrowRight size={50} />

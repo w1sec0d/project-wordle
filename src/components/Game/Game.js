@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 
+import Swal from "sweetalert2";
+
 import { sample } from "../../utils";
 import { WORDS } from "../../data";
 import { NUM_OF_GUESSES_ALLOWED } from "../../constants";
@@ -7,16 +9,10 @@ import { checkGuess } from "../../game-helpers";
 
 import GuessInput from "../GuessInput/GuessInput";
 import GuessResults from "../GuessResults/GuessResults";
-import WonBanner from "../WonBanner/WonBanner";
-import LostBanner from "../LostBanner/LostBanner";
 import Keyboard from "../Keyboard/Keyboard";
 
-// Pick a random word on every pageload.
-const answer = sample(WORDS);
-// To make debugging easier, we'll log the solution in the console.
-console.info({ answer });
-
 function Game() {
+  const [answer, setAnswer] = useState(sample(WORDS));
   const [previousGuesses, setPreviousGuesses] = useState(
     Array(NUM_OF_GUESSES_ALLOWED).fill(undefined)
   );
@@ -26,6 +22,8 @@ function Game() {
 
   // Handles the submission of a guess. Updating attempts, previousGuesses, and stopping the game if the user won or lost.
   function handleSubmitGuess(guess) {
+    // To make debugging easier, we'll log the solution in the console.
+    console.info({ answer });
     let nextAttempts = attempts + 1;
     setAttempts(nextAttempts);
 
@@ -45,31 +43,72 @@ function Game() {
         )
       ) {
         setGameStatus("won");
+        Swal.fire({
+          title: "You won!",
+          html: `
+              <p>
+                <strong>Congratulations!</strong> Got it in
+                <strong>
+                  ${" " + nextAttempts} guess${nextAttempts > 1 ? "es" : ""}
+                </strong>
+              </p>
+            `,
+          icon: "success",
+          toast: true,
+          position: "top-end",
+          showCloseButton: true,
+          confirmButtonText: "Restart Game",
+          confirmButtonColor: "#0a84ff",
+        }).then((result) => {
+          if (result.isConfirmed) {
+            restartGame();
+          }
+        });
         return;
       }
     }
 
     if (gameStatus === "running" && nextAttempts === NUM_OF_GUESSES_ALLOWED) {
       setGameStatus("lost");
+      Swal.fire({
+        title: "You lost :(",
+        html: `
+            <p>
+              The correct answer is <strong>${answer}</strong>
+            </p>
+          `,
+        icon: "error",
+        toast: true,
+        position: "top-end",
+        showCloseButton: true,
+        confirmButtonText: "Restart Game",
+        confirmButtonColor: "#0a84ff",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          restartGame();
+        }
+      });
     }
+  }
+
+  function restartGame() {
+    setPreviousGuesses(Array(NUM_OF_GUESSES_ALLOWED).fill(undefined));
+    setPreviousGuessesChecked([]);
+    setAttempts(0);
+    setGameStatus("running");
+    setAnswer(sample(WORDS));
   }
 
   return (
     <>
-      <GuessResults
-        previousGuesses={previousGuesses}
-        previousGuessesChecked={previousGuessesChecked}
-      />
+      <GuessResults previousGuessesChecked={previousGuessesChecked} />
       <div className="input-wrapper">
         <GuessInput
           handleSubmitGuess={handleSubmitGuess}
           disabled={gameStatus === "won" || gameStatus === "lost"}
-          autoFocus
         />
         <Keyboard previousGuessesChecked={previousGuessesChecked} />
       </div>
-      {gameStatus === "won" && <WonBanner attempts={attempts} />}
-      {gameStatus === "lost" && <LostBanner answer={answer} />}
     </>
   );
 }

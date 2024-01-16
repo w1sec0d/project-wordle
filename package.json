@@ -13,7 +13,8 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-feather": "^2.0.10",
-    "rimraf": "5.0.1"
+    "rimraf": "5.0.1",
+    "sweetalert2": "^11.10.3"
   },
   "scripts": {
     "predev": "rimraf .parcel-cache dist",
