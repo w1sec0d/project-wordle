@@ -73,31 +73,6 @@ h1 {
   }
 }
 
-/* Global styles */
-:root {
-  --font-size-small: 14px;
-  --font-size-medium: 16px;
-  --font-size-large: 18px;
-}
-
-@media (max-width: 768px) {
-  :root {
-    font-size: var(--font-size-small);
-  }
-}
-
-@media (min-width: 769px) and (max-width: 1024px) {
-  :root {
-    font-size: var(--font-size-medium);
-  }
-}
-
-@media (min-width: 1025px) {
-  :root {
-    font-size: var(--font-size-large);
-  }
-}
-
 .game-wrapper {
   display: flex;
   flex-direction: row;
@@ -277,11 +252,14 @@ h1 {
 }
 
 .keyboard .keyboard-letter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-weight: bold;
   border-radius: 5px;
   margin: 3px;
-  width: 40px;
-  height: 40px;
+  max-width: 40px;
+  max-height: 40px;
   line-height: 40px;
   cursor: pointer;
   text-align: center;
@@ -365,6 +343,10 @@ h1 {
   text-align: left;
 }
 
+.tutorial-wrapper ul p {
+  line-height: 1.4;
+}
+
 .tutorial-wrapper ul li .cell {
   width: 70px;
   height: 70px;
@@ -385,4 +367,41 @@ h1 {
 
 .tutorial-wrapper ul li .misplaced {
   background-color: var(--color-warning);
+}
+
+/* Reesponsive styling */
+:root {
+  --font-size-small: 14px;
+  --font-size-medium: 16px;
+  --font-size-large: 18px;
+}
+
+@media (max-width: 768px) {
+  :root {
+    font-size: var(--font-size-small);
+  }
+  .keyboard-letter {
+    width: 35px;
+    height: 35px;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  :root {
+    font-size: var(--font-size-medium);
+  }
+  .keyboard-letter {
+    width: 38px;
+    height: 38px;
+  }
+}
+
+@media (min-width: 1025px) {
+  :root {
+    font-size: var(--font-size-large);
+  }
+  .keyboard-letter {
+    width: 40px;
+    height: 40px;
+  }
 }

@@ -24,8 +24,8 @@ function GuessInput({ handleSubmitGuess, disabled, guess, setGuess }) {
           minLength={5}
           maxLength={5}
           required={true}
-          autoFocus={true}
           disabled={disabled}
+          inputMode="none"
         />
         <button type="submit" className="guess-input-icon">
           <ArrowRight size={50} />

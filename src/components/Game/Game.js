@@ -122,16 +122,16 @@ function Game() {
           </ul>
           <br>
           <div class="tutorial-wrapper">
-            <h2>Examples:</h2>
+            <h2>Examples</h2>
             <ul>
               <li>
-                <span class="cell correct">W</span><p><strong>W</strong> is in the word and in the <span class="cell-text correct">correct</span> position</p>
+                <p><span class="cell correct">W</span><p><strong>W</strong> is in the word and in the <span class="cell-text correct">correct</span> position</p>
               </li>
               <li>
-                <span class="cell misplaced">L</span><p><strong>L</strong> is in the word but in the <span class="cell-text misplaced">wrong</span> position</p>
+                <p><span class="cell misplaced">L</span><p><strong>L</strong> is in the word but in the <span class="cell-text misplaced">wrong</span> position</p>
               </li>
               <li>
-                <span class="cell incorrect">Y</span><p><strong>Y</strong> is <span class="cell-text incorrect">not in</span> the word</p>
+                <p><span class="cell incorrect">Y</span><p><strong>Y</strong> is <span class="cell-text incorrect">not in</span> the word</p>
               </li>
             </ul>
           </div>
@@ -158,7 +158,11 @@ function Game() {
           guess={guess}
           setGuess={setGuess}
         />
-        <Keyboard previousGuessesChecked={previousGuessesChecked} />
+        <Keyboard
+          previousGuessesChecked={previousGuessesChecked}
+          guess={guess}
+          setGuess={setGuess}
+        />
       </div>
     </>
   );

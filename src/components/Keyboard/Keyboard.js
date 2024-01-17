@@ -1,4 +1,5 @@
 import React from "react";
+import { Delete, ArrowRight } from "react-feather";
 
 // * This function recieves an alphabet array, representing each keyboard line
 // * Each sub-array is a keyboard line
@@ -36,12 +37,16 @@ const defaultKeyboard = [
     { letter: "B" },
     { letter: "N" },
     { letter: "M" },
+    { letter: "[delete]" },
   ],
 ];
 
-function KeyboardLetter({ variant, children }) {
+function KeyboardLetter({ variant, onClick, children }) {
   return (
-    <p className={`keyboard-letter ${variant ? variant : "unused"}`}>
+    <p
+      className={`keyboard-letter ${variant ? variant : "unused"}`}
+      onClick={onClick}
+    >
       {children}
     </p>
   );
@@ -70,8 +75,34 @@ function getLastAlphabetState(previousGuessesChecked) {
   }
 }
 
-function Keyboard({ alphabetArray = defaultKeyboard, previousGuessesChecked }) {
+function decodeKeyboardLetter(letter) {
+  switch (letter) {
+    case "[delete]":
+      return <Delete />;
+
+    case "[enter]":
+      return <ArrowRight />;
+
+    default:
+      return "unknown";
+  }
+}
+
+function Keyboard({
+  alphabetArray = defaultKeyboard,
+  previousGuessesChecked,
+  guess,
+  setGuess,
+}) {
   let lastAlphabetState = getLastAlphabetState(previousGuessesChecked);
+
+  const handleLetterClick = (letter) => {
+    if (/^[A-Z]$/.test(letter) && guess.length <= 4) {
+      setGuess(guess + letter);
+    } else if (letter === "[delete]" && guess.length > 0) {
+      setGuess(guess.slice(0, -1));
+    }
+  };
 
   return (
     <div className="keyboard">
@@ -81,8 +112,11 @@ function Keyboard({ alphabetArray = defaultKeyboard, previousGuessesChecked }) {
             <KeyboardLetter
               variant={lastAlphabetState[letterItem.letter]}
               key={letterItem.letter.toUpperCase()}
+              onClick={() => handleLetterClick(letterItem.letter)}
             >
-              {letterItem.letter.toUpperCase()}
+              {!letterItem.letter.startsWith("[")
+                ? letterItem.letter.toUpperCase()
+                : decodeKeyboardLetter(letterItem.letter)}
             </KeyboardLetter>
           ))}
         </span>
