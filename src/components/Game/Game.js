@@ -82,7 +82,7 @@ function Game({ swalInstructions }) {
       position: "top-end",
       showCloseButton: true,
       confirmButtonText: "Restart Game",
-      confirmButtonColor: "#0a84ff",
+      confirmButtonColor: "#998000",
     }).then((result) => {
       if (result.isConfirmed) {
         restartGame();
