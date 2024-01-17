@@ -373,6 +373,21 @@ h1 {
   background-color: var(--color-warning);
 }
 
+footer {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding: 20px;
+}
+
+footer a {
+  text-decoration: none;
+  background-color: black;
+  color: white;
+  padding: 5px;
+  border-radius: 5px;
+}
+
 /* Reesponsive styling */
 :root {
   --font-size-small: 14px;

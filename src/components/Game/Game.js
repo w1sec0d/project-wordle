@@ -110,7 +110,7 @@ function Game({ swalInstructions }) {
 
   useEffect(() => {
     swalInstructions();
-  }, []);
+  }, [swalInstructions]);
 
   return (
     <>
