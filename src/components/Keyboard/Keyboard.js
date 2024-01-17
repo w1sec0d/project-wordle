@@ -101,8 +101,14 @@ function Keyboard({
 }) {
   let lastAlphabetState = getLastAlphabetState(previousGuessesChecked);
 
+  // Fixing glitchy behaviour of reordering the array
+  let previousGuessesOrdered = previousGuessesChecked[0]
+    ? previousGuessesChecked
+    : [...previousGuessesChecked].reverse();
+
   const handleLetterClick = (letter) => {
-    if (previousGuessesChecked.length <= 5) {
+    console.log(previousGuessesOrdered);
+    if (previousGuessesOrdered.length <= 6) {
       if (/^[A-Z]$/.test(letter) && guess.length <= 4) {
         setGuess(guess + letter);
       } else if (letter === "[delete]" && guess.length > 0) {
