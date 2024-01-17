@@ -1,9 +1,15 @@
 import React, { useEffect, useRef } from "react";
-import { ArrowRight } from "react-feather";
+import { ArrowRight, RefreshCcw } from "react-feather";
 
-function GuessInput({ handleSubmitGuess, disabled, guess, setGuess }) {
+function GuessInput({
+  handleSubmitGuess,
+  disabled,
+  guess,
+  setGuess,
+  gameStatus,
+}) {
+  // Auto focus on input only on desktop
   const inputRef = useRef(null);
-
   useEffect(() => {
     if (window.innerWidth > 768) {
       inputRef.current.focus();
@@ -36,9 +42,16 @@ function GuessInput({ handleSubmitGuess, disabled, guess, setGuess }) {
           inputMode="none"
           ref={inputRef}
         />
-        <button type="submit" className="guess-input-icon">
-          <ArrowRight size={50} />
-        </button>
+        {gameStatus === "running" && (
+          <button type="submit" className="guess-input-icon send">
+            <ArrowRight size={50} />
+          </button>
+        )}
+        {(gameStatus === "won" || gameStatus === "lost") && (
+          <button type="submit" className="guess-input-icon reset">
+            <RefreshCcw size={40} />
+          </button>
+        )}
       </div>
     </form>
   );

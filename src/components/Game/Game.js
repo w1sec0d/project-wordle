@@ -50,6 +50,11 @@ function Game({ swalInstructions }) {
     if (gameStatus === "running" && nextAttempts === NUM_OF_GUESSES_ALLOWED) {
       setGameStatus("lost");
       swalLostAlert(answer);
+    } else if (
+      (gameStatus === "won" || gameStatus === "lost") &&
+      nextAttempts > NUM_OF_GUESSES_ALLOWED
+    ) {
+      restartGame();
     }
   }
 
@@ -98,7 +103,7 @@ function Game({ swalInstructions }) {
       position: "top-end",
       showCloseButton: true,
       confirmButtonText: "Restart Game",
-      confirmButtonColor: "#0a84ff",
+      confirmButtonColor: "#998000",
     }).then((result) => {
       if (result.isConfirmed) {
         restartGame();
@@ -119,6 +124,7 @@ function Game({ swalInstructions }) {
           disabled={gameStatus === "won" || gameStatus === "lost"}
           guess={guess}
           setGuess={setGuess}
+          gameStatus={gameStatus}
         />
         <Keyboard
           previousGuessesChecked={previousGuessesChecked}

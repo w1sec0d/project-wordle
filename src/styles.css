@@ -308,11 +308,18 @@ h1 {
   align-items: center;
   justify-content: center;
   border-radius: 5px;
-  background-color: var(--color-success);
   color: white;
   width: 60px;
   height: 60px;
   stroke-width: 2;
+}
+
+.guess-input-icon.send {
+  background-color: var(--color-success);
+}
+
+.guess-input-icon.reset {
+  background-color: var(--color-warning);
 }
 
 .input-row {

@@ -102,10 +102,12 @@ function Keyboard({
   let lastAlphabetState = getLastAlphabetState(previousGuessesChecked);
 
   const handleLetterClick = (letter) => {
-    if (/^[A-Z]$/.test(letter) && guess.length <= 4) {
-      setGuess(guess + letter);
-    } else if (letter === "[delete]" && guess.length > 0) {
-      setGuess(guess.slice(0, -1));
+    if (previousGuessesChecked.length <= 5) {
+      if (/^[A-Z]$/.test(letter) && guess.length <= 4) {
+        setGuess(guess + letter);
+      } else if (letter === "[delete]" && guess.length > 0) {
+        setGuess(guess.slice(0, -1));
+      }
     }
   };
 
