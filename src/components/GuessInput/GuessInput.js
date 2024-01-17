@@ -1,9 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import { ArrowRight } from "react-feather";
 
-function GuessInput({ handleSubmitGuess, disabled }) {
-  const [guess, setGuess] = useState("");
-
+function GuessInput({ handleSubmitGuess, disabled, guess, setGuess }) {
   function handleSubmit(event) {
     event.preventDefault();
     handleSubmitGuess(guess);

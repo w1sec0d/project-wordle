@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import Swal from "sweetalert2";
 
@@ -12,6 +12,7 @@ import GuessResults from "../GuessResults/GuessResults";
 import Keyboard from "../Keyboard/Keyboard";
 
 function Game() {
+  const [guess, setGuess] = useState(""); // The current guess
   const [answer, setAnswer] = useState(sample(WORDS));
   const [previousGuesses, setPreviousGuesses] = useState(
     Array(NUM_OF_GUESSES_ALLOWED).fill(undefined)
@@ -19,11 +20,11 @@ function Game() {
   const [previousGuessesChecked, setPreviousGuessesChecked] = useState([]);
   const [attempts, setAttempts] = useState(0);
   const [gameStatus, setGameStatus] = useState("running"); // Handles game status: running | won | lost
+  console.info({ answer });
 
   // Handles the submission of a guess. Updating attempts, previousGuesses, and stopping the game if the user won or lost.
   function handleSubmitGuess(guess) {
     // To make debugging easier, we'll log the solution in the console.
-    console.info({ answer });
     let nextAttempts = attempts + 1;
     setAttempts(nextAttempts);
 
@@ -43,51 +44,14 @@ function Game() {
         )
       ) {
         setGameStatus("won");
-        Swal.fire({
-          title: "You won!",
-          html: `
-              <p>
-                <strong>Congratulations!</strong> Got it in
-                <strong>
-                  ${" " + nextAttempts} guess${nextAttempts > 1 ? "es" : ""}
-                </strong>
-              </p>
-            `,
-          icon: "success",
-          toast: true,
-          position: "top-end",
-          showCloseButton: true,
-          confirmButtonText: "Restart Game",
-          confirmButtonColor: "#0a84ff",
-        }).then((result) => {
-          if (result.isConfirmed) {
-            restartGame();
-          }
-        });
+        swalWonAlert(nextAttempts);
         return;
       }
     }
 
     if (gameStatus === "running" && nextAttempts === NUM_OF_GUESSES_ALLOWED) {
       setGameStatus("lost");
-      Swal.fire({
-        title: "You lost :(",
-        html: `
-            <p>
-              The correct answer is <strong>${answer}</strong>
-            </p>
-          `,
-        icon: "error",
-        toast: true,
-        position: "top-end",
-        showCloseButton: true,
-        confirmButtonText: "Restart Game",
-        confirmButtonColor: "#0a84ff",
-      }).then((result) => {
-        if (result.isConfirmed) {
-          restartGame();
-        }
-      });
+      swalLostAlert(answer);
     }
   }
 
@@ -99,6 +63,91 @@ function Game() {
     setAnswer(sample(WORDS));
   }
 
+  function swalWonAlert(attempts) {
+    Swal.fire({
+      title: "You won!",
+      html: `
+          <p>
+            <strong>Congratulations!</strong> Got it in
+            <strong>
+              ${" " + attempts} guess${attempts > 1 ? "es" : ""}
+            </strong>
+          </p>
+        `,
+      icon: "success",
+      toast: true,
+      position: "top-end",
+      showCloseButton: true,
+      confirmButtonText: "Restart Game",
+      confirmButtonColor: "#0a84ff",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        restartGame();
+      }
+    });
+  }
+
+  function swalLostAlert(answer) {
+    Swal.fire({
+      title: "You lost :(",
+      html: `
+          <p>
+            The correct answer is <strong>${answer}</strong>
+          </p>
+        `,
+      icon: "error",
+      toast: true,
+      position: "top-end",
+      showCloseButton: true,
+      confirmButtonText: "Restart Game",
+      confirmButtonColor: "#0a84ff",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        restartGame();
+      }
+    });
+  }
+
+  function swalInstructions() {
+    Swal.fire({
+      title: "Instructions",
+      html: `
+          <ul class="instruction-list">
+            <li>
+              Guess the 5 letter word in 6 attempts or less.
+            </li>
+            <li>
+              The tiles change its color based on how good your guess is.
+            </li>
+          </ul>
+          <br>
+          <div class="tutorial-wrapper">
+            <h2>Examples:</h2>
+            <ul>
+              <li>
+                <span class="cell correct">W</span><p><strong>W</strong> is in the word and in the <span class="cell-text correct">correct</span> position</p>
+              </li>
+              <li>
+                <span class="cell misplaced">L</span><p><strong>L</strong> is in the word but in the <span class="cell-text misplaced">wrong</span> position</p>
+              </li>
+              <li>
+                <span class="cell incorrect">Y</span><p><strong>Y</strong> is <span class="cell-text incorrect">not in</span> the word</p>
+              </li>
+            </ul>
+          </div>
+
+        `,
+      icon: "info",
+      showCloseButton: true,
+      confirmButtonText: "Got it!",
+      confirmButtonColor: "#0a84ff",
+    });
+  }
+
+  useEffect(() => {
+    swalInstructions();
+  }, []);
+
   return (
     <>
       <GuessResults previousGuessesChecked={previousGuessesChecked} />
@@ -106,6 +155,8 @@ function Game() {
         <GuessInput
           handleSubmitGuess={handleSubmitGuess}
           disabled={gameStatus === "won" || gameStatus === "lost"}
+          guess={guess}
+          setGuess={setGuess}
         />
         <Keyboard previousGuessesChecked={previousGuessesChecked} />
       </div>

@@ -104,7 +104,7 @@ h1 {
   gap: var(--game-spacing);
   padding: var(--game-spacing) 32px;
   margin: 0 auto;
-  min-width: 250px;
+  min-width: 27;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
@@ -347,4 +347,42 @@ h1 {
 
 #guess-input {
   height: 60px;
+}
+
+.instruction-list {
+  text-align: left;
+}
+
+.instruction-list li {
+  margin-bottom: 10px;
+}
+
+.tutorial-wrapper ul li {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin: 10px 0;
+  text-align: left;
+}
+
+.tutorial-wrapper ul li .cell {
+  width: 70px;
+  height: 70px;
+}
+
+.tutorial-wrapper ul li .cell-text {
+  color: white;
+  padding: 2px 5px;
+}
+
+.tutorial-wrapper ul li .correct {
+  background-color: var(--color-success);
+}
+
+.tutorial-wrapper ul li .incorrect {
+  background-color: var(--color-gray-300);
+}
+
+.tutorial-wrapper ul li .misplaced {
+  background-color: var(--color-warning);
 }
