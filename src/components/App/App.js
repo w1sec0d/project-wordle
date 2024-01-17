@@ -47,6 +47,7 @@ function App() {
       <div className="game-wrapper">
         <Game swalInstructions={swalInstructions} />
       </div>
+
       <footer>
         Made in 🇨🇴 by{" "}
         <a href="https://github.com/w1sec0d/" target="_BLANK" rel="noreferrer">

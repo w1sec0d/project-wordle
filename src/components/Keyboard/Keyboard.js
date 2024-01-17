@@ -56,9 +56,14 @@ function getLastAlphabetState(previousGuessesChecked) {
   // * Returns a dictionary with the current state of each letter (lastState)
   // * lastState = {a: 'correct', b:'missplaced', c:'incorrect', d:'unused'}
 
+  // Fixing glitchy behaviour of reordering the array
+  let previousGuessesOrdered = previousGuessesChecked[0]
+    ? previousGuessesChecked
+    : [...previousGuessesChecked].reverse();
+
   let lastState = {};
-  if (previousGuessesChecked) {
-    for (let guess of previousGuessesChecked.reverse()) {
+  if (previousGuessesOrdered) {
+    for (let guess of previousGuessesOrdered.reverse()) {
       // * The guesses are checked in reverse in order to store
       // * the last status of a letter efficiently!
       if (guess) {
