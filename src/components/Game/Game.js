@@ -20,11 +20,9 @@ function Game({ swalInstructions }) {
   const [previousGuessesChecked, setPreviousGuessesChecked] = useState([]);
   const [attempts, setAttempts] = useState(0);
   const [gameStatus, setGameStatus] = useState("running"); // Handles game status: running | won | lost
-  console.info({ answer });
 
   // Handles the submission of a guess. Updating attempts, previousGuesses, and stopping the game if the user won or lost.
   function handleSubmitGuess(guess) {
-    // To make debugging easier, we'll log the solution in the console.
     let nextAttempts = attempts + 1;
     setAttempts(nextAttempts);
 
