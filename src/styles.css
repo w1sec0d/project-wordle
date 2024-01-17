@@ -52,12 +52,14 @@ header {
   height: var(--header-height);
   border-bottom: 1px solid var(--color-gray-700);
   color: var(--color-gray-300);
+  position: relative;
 }
 
-header .side {
-  width: var(--header-height);
-  display: grid;
-  place-content: center;
+header svg {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translate(0, -50%);
 }
 
 h1 {
@@ -151,6 +153,7 @@ h1 {
   flex-direction: column;
   gap: 8px;
   height: 6.75rem;
+  margin: 0 25px;
 }
 
 .guess-input-wrapper label {
@@ -242,6 +245,8 @@ h1 {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 95%;
+  margin: 0 auto;
 }
 
 .keyboard .keyboard-line {
@@ -296,7 +301,6 @@ h1 {
   flex-direction: column;
   gap: 12px;
   flex-basis: 20%;
-  max-width: 90vw;
 }
 
 .guess-input-icon {

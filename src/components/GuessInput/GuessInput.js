@@ -1,7 +1,15 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { ArrowRight } from "react-feather";
 
 function GuessInput({ handleSubmitGuess, disabled, guess, setGuess }) {
+  const inputRef = useRef(null);
+
+  useEffect(() => {
+    if (window.innerWidth > 768) {
+      inputRef.current.focus();
+    }
+  }, []);
+
   function handleSubmit(event) {
     event.preventDefault();
     handleSubmitGuess(guess);
@@ -26,6 +34,7 @@ function GuessInput({ handleSubmitGuess, disabled, guess, setGuess }) {
           required={true}
           disabled={disabled}
           inputMode="none"
+          ref={inputRef}
         />
         <button type="submit" className="guess-input-icon">
           <ArrowRight size={50} />
