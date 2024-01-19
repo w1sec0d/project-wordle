@@ -2,8 +2,16 @@ import Swal from "sweetalert2";
 
 import Game from "../Game";
 import Header from "../Header";
+import { useTranslation, Trans } from "react-i18next";
 
 function App() {
+  // Translation logic
+  const { t, i18n } = useTranslation();
+  const languages = {
+    en: { nativeName: "English" },
+    es: { nativeName: "Spanish" },
+  };
+
   function swalInstructions() {
     Swal.fire({
       title: "Instructions",
