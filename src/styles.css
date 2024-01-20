@@ -55,7 +55,7 @@ header {
   position: relative;
 }
 
-header svg {
+header .help-svg {
   position: absolute;
   right: 10px;
   top: 50%;

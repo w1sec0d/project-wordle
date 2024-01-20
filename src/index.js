@@ -3,8 +3,6 @@ import { createRoot } from "react-dom/client";
 
 import App from "./components/App";
 
-import "./i18n";
-
 import "./reset.css";
 import "./styles.css";
 

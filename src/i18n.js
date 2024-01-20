@@ -13,25 +13,18 @@ i18n
   .init({
     debug: true,
     fallbackLng: "en",
+    supportedLngs: ["en", "es"],
     interpolation: {
       escapeValue: false, // not needed for react as it escapes by default
     },
     resources: {
       en: {
         translation: {
-          description: {
-            part1: "Edit <1>src/App.js</1> and save to reload.",
-            part2: "Learn React",
-          },
+          language: "English",
         },
       },
-      de: {
-        translation: {
-          description: {
-            part1: "Ändere <1>src/App.js</1> und speichere um neu zu laden.",
-            part2: "Lerne React",
-          },
-        },
+      es: {
+        language: "Español",
       },
     },
   });
