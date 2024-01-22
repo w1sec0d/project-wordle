@@ -26,6 +26,10 @@ function Game({ swalInstructions }) {
   const [attempts, setAttempts] = useState(0);
   const [gameStatus, setGameStatus] = useState("running"); // Handles game status: running | won | lost
 
+  useEffect(() => {
+    setAnswer(sample(WORDS[i18n.language]));
+  }, [i18n.language]);
+  console.log({ answer });
   // Handles the submission of a guess. Updating attempts, previousGuesses, and stopping the game if the user won or lost.
   function handleSubmitGuess(guess) {
     let nextAttempts = attempts + 1;
@@ -68,7 +72,7 @@ function Game({ swalInstructions }) {
     setPreviousGuessesChecked([]);
     setAttempts(0);
     setGameStatus("running");
-    setAnswer(sample(WORDS));
+    setAnswer(sample(WORDS[i18n.language]));
   }
 
   function swalWonAlert(attempts) {
@@ -135,6 +139,7 @@ function Game({ swalInstructions }) {
           previousGuessesChecked={previousGuessesChecked}
           guess={guess}
           setGuess={setGuess}
+          language={i18n.language}
         />
       </div>
     </>

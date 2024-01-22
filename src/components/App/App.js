@@ -12,7 +12,6 @@ import { I18nextProvider, useTranslation } from "react-i18next";
 function App() {
   const { t } = useTranslation();
 
-  // Translation logic
   function swalInstructions() {
     Swal.fire({
       title: t("instructions"),

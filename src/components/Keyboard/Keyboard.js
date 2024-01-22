@@ -5,41 +5,79 @@ import { Delete, ArrowRight } from "react-feather";
 // * Each sub-array is a keyboard line
 // * Inside each line there are multiple letter objects like this: {letter:'a',style:...}
 
-const defaultKeyboard = [
-  [
-    { letter: "Q" },
-    { letter: "W" },
-    { letter: "E" },
-    { letter: "R" },
-    { letter: "T" },
-    { letter: "Y" },
-    { letter: "U" },
-    { letter: "I" },
-    { letter: "O" },
-    { letter: "P" },
+const defaultKeyboard = {
+  en: [
+    [
+      { letter: "Q" },
+      { letter: "W" },
+      { letter: "E" },
+      { letter: "R" },
+      { letter: "T" },
+      { letter: "Y" },
+      { letter: "U" },
+      { letter: "I" },
+      { letter: "O" },
+      { letter: "P" },
+    ],
+    [
+      { letter: "A" },
+      { letter: "S" },
+      { letter: "D" },
+      { letter: "F" },
+      { letter: "G" },
+      { letter: "H" },
+      { letter: "J" },
+      { letter: "K" },
+      { letter: "L" },
+    ],
+    [
+      { letter: "Z" },
+      { letter: "X" },
+      { letter: "C" },
+      { letter: "V" },
+      { letter: "B" },
+      { letter: "N" },
+      { letter: "M" },
+      { letter: "[delete]" },
+    ],
   ],
-  [
-    { letter: "A" },
-    { letter: "S" },
-    { letter: "D" },
-    { letter: "F" },
-    { letter: "G" },
-    { letter: "H" },
-    { letter: "J" },
-    { letter: "K" },
-    { letter: "L" },
+  es: [
+    [
+      { letter: "Q" },
+      { letter: "W" },
+      { letter: "E" },
+      { letter: "R" },
+      { letter: "T" },
+      { letter: "Y" },
+      { letter: "U" },
+      { letter: "I" },
+      { letter: "O" },
+      { letter: "P" },
+    ],
+    [
+      { letter: "A" },
+      { letter: "S" },
+      { letter: "D" },
+      { letter: "F" },
+      { letter: "G" },
+      { letter: "H" },
+      { letter: "J" },
+      { letter: "K" },
+      { letter: "L" },
+      { letter: "Ñ" },
+    ],
+    [
+      { letter: "Z" },
+      { letter: "X" },
+      { letter: "C" },
+      { letter: "V" },
+      { letter: "B" },
+      { letter: "N" },
+      { letter: "M" },
+      { letter: "[delete]" },
+    ],
   ],
-  [
-    { letter: "Z" },
-    { letter: "X" },
-    { letter: "C" },
-    { letter: "V" },
-    { letter: "B" },
-    { letter: "N" },
-    { letter: "M" },
-    { letter: "[delete]" },
-  ],
-];
+};
 
 function KeyboardLetter({ variant, onClick, children }) {
   return (
@@ -98,6 +136,7 @@ function Keyboard({
   previousGuessesChecked,
   guess,
   setGuess,
+  language = "en",
 }) {
   let lastAlphabetState = getLastAlphabetState(previousGuessesChecked);
 
@@ -109,7 +148,7 @@ function Keyboard({
   const handleLetterClick = (letter) => {
     console.log(previousGuessesOrdered);
     if (previousGuessesOrdered.length <= 6) {
-      if (/^[A-Z]$/.test(letter) && guess.length <= 4) {
+      if (/^[A-ZÑ]$/.test(letter) && guess.length <= 4) {
         setGuess(guess + letter);
       } else if (letter === "[delete]" && guess.length > 0) {
         setGuess(guess.slice(0, -1));
@@ -119,7 +158,7 @@ function Keyboard({
 
   return (
     <div className="keyboard">
-      {alphabetArray.map((keyboardLine, index) => (
+      {alphabetArray[language].map((keyboardLine, index) => (
         <span className="keyboard-line" key={index}>
           {keyboardLine.map((letterItem) => (
             <KeyboardLetter

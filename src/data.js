@@ -73,7 +73,6 @@ export const WORDS = {
     "TOMAR",
     "VOLAR",
     "YOGUR",
-    "ZANAH",
     "ARBOL",
     "EXITO",
     "UNICO",
