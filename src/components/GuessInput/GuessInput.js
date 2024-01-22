@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { ArrowRight, RefreshCcw } from "react-feather";
+import { useTranslation } from "react-i18next";
 
 function GuessInput({
   handleSubmitGuess,
@@ -16,6 +17,8 @@ function GuessInput({
     }
   }, []);
 
+  const { t } = useTranslation();
+
   function handleSubmit(event) {
     event.preventDefault();
     handleSubmitGuess(guess);
@@ -24,7 +27,7 @@ function GuessInput({
 
   return (
     <form className="guess-input-wrapper" onSubmit={handleSubmit}>
-      <label htmlFor="guess-input">Enter guess:</label>
+      <label htmlFor="guess-input">{t("enterGuess")}:</label>
       <div className="input-row">
         <input
           id="guess-input"

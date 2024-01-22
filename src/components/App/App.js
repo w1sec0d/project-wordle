@@ -15,28 +15,34 @@ function App() {
   // Translation logic
   function swalInstructions() {
     Swal.fire({
-      title: "Instructions",
+      title: t("instructions"),
       html: `
           <ul class="instruction-list">
             <li>
-              Guess the 5 letter word in 6 attempts or less.
+              ${t("instructions1")}
             </li>
             <li>
-              The tiles change its color based on how good your guess is.
+              ${t("instructions2")}
             </li>
           </ul>
           <br>
           <div class="tutorial-wrapper">
-            <h2>Examples</h2>
+            <h2>${t("examples")}</h2>
             <ul>
               <li>
-                <p><span class="cell correct">W</span><p><strong>W</strong> is in the word and in the <span class="cell-text correct">correct</span> position</p>
+                <p><span class="cell correct">W</span><p><strong>W</strong> ${t(
+                  "tutorial1"
+                )}</p>
               </li>
               <li>
-                <p><span class="cell misplaced">L</span><p><strong>L</strong> is in the word but in the <span class="cell-text misplaced">wrong</span> position</p>
+                <p><span class="cell misplaced">L</span><p><strong>L</strong> ${t(
+                  "tutorial2"
+                )}</p>
               </li>
               <li>
-                <p><span class="cell incorrect">Y</span><p><strong>Y</strong> is <span class="cell-text incorrect">not in</span> the word</p>
+                <p><span class="cell incorrect">Y</span><p><strong>Y</strong> ${t(
+                  "tutorial3"
+                )}</p>
               </li>
             </ul>
           </div>
@@ -44,7 +50,7 @@ function App() {
         `,
       icon: "info",
       showCloseButton: true,
-      confirmButtonText: "Got it!",
+      confirmButtonText: t("gotIt"),
       confirmButtonColor: "#0a84ff",
     });
   }
@@ -57,7 +63,7 @@ function App() {
           <Game swalInstructions={swalInstructions} />
         </div>
         <footer>
-          Made in 🇨🇴 by{" "}
+          {t("madeIn") + " "}
           <a
             href="https://github.com/w1sec0d/"
             target="_BLANK"

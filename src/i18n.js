@@ -20,11 +20,44 @@ i18n
     resources: {
       en: {
         translation: {
-          language: "English",
+          currentLanguage: "English",
+          instructions: "Instructions",
+          instructions1: "Guess the 5 letter word in 6 attempts or less.",
+          instructions2:
+            "The tiles change its color based on how good your guess is.",
+          examples: "Examples",
+          tutorial1:
+            "is in the word and in the <span class='cell-text correct'>correct</span> position",
+          tutorial2:
+            "is in the word but in the <span class='cell-text misplaced'>wrong</span> position",
+          tutorial3:
+            "is <span class='cell-text incorrect'>not in</span> the word",
+          gotIt: "Got it!",
+          enterGuess: "Enter Guess",
+          madeIn: "Made in 🇨🇴 by",
+          gameTitle: "Wordle Game",
         },
       },
       es: {
-        language: "Español",
+        translation: {
+          currentLanguage: "Español",
+          instructions: "Instrucciones",
+          instructions1:
+            "Adivina la palabra de 5 letras en 6 intentos o menos.",
+          instructions2:
+            "Las letras cambian su color según que tan bueno fue tu intento.",
+          examples: "Ejemplos:",
+          tutorial1:
+            "está en la palabra y en la posición <span class='cell-text correct'>correcta</span>",
+          tutorial2:
+            "está en la palabra pero en la posición <span class='cell-text misplaced'>incorrecta</span>",
+          tutorial3:
+            "<span class='cell-text incorrect'>no está</span> en la palabra",
+          gotIt: "¡Lo tengo!",
+          enterGuess: "Escribe tu adivinanza",
+          madeIn: "Hecho en 🇨🇴 por",
+          gameTitle: "Juego Wordle",
+        },
       },
     },
   });
