@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import Swal from "sweetalert2";
+import { useTranslation } from "react-i18next";
 
 import { sample } from "../../utils";
 import { WORDS } from "../../data";
@@ -12,8 +13,12 @@ import GuessResults from "../GuessResults/GuessResults";
 import Keyboard from "../Keyboard/Keyboard";
 
 function Game({ swalInstructions }) {
+  // Language Logic
+  const { i18n } = useTranslation();
+
+  // Game logic
   const [guess, setGuess] = useState(""); // The current guess
-  const [answer, setAnswer] = useState(sample(WORDS));
+  const [answer, setAnswer] = useState(sample(WORDS[i18n.language]));
   const [previousGuesses, setPreviousGuesses] = useState(
     Array(NUM_OF_GUESSES_ALLOWED).fill(undefined)
   );
