@@ -14,7 +14,7 @@ import Keyboard from "../Keyboard/Keyboard";
 
 function Game({ swalInstructions }) {
   // Language Logic
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   // Game logic
   const [guess, setGuess] = useState(""); // The current guess
@@ -26,10 +26,13 @@ function Game({ swalInstructions }) {
   const [attempts, setAttempts] = useState(0);
   const [gameStatus, setGameStatus] = useState("running"); // Handles game status: running | won | lost
 
+  // Updates answer when changing language
   useEffect(() => {
     setAnswer(sample(WORDS[i18n.language]));
   }, [i18n.language]);
+
   console.log({ answer });
+
   // Handles the submission of a guess. Updating attempts, previousGuesses, and stopping the game if the user won or lost.
   function handleSubmitGuess(guess) {
     let nextAttempts = attempts + 1;
@@ -76,13 +79,22 @@ function Game({ swalInstructions }) {
   }
 
   function swalWonAlert(attempts) {
+    let plural = "";
+    if (attempts > 1) {
+      if (i18n.language === "en") {
+        plural = "es";
+      } else if (i18n.language === "es") {
+        plural = "s";
+      }
+    }
+
     Swal.fire({
-      title: "You won!",
+      title: t("youWon"),
       html: `
           <p>
-            <strong>Congratulations!</strong> Got it in
+            <strong>${t("congratulations")}</strong> ${t("gotItIn")}
             <strong>
-              ${" " + attempts} guess${attempts > 1 ? "es" : ""}
+              ${" " + attempts} ${t("guess")}${plural}
             </strong>
           </p>
         `,
@@ -90,7 +102,7 @@ function Game({ swalInstructions }) {
       toast: true,
       position: "top-end",
       showCloseButton: true,
-      confirmButtonText: "Restart Game",
+      confirmButtonText: t("playAgain"),
       confirmButtonColor: "#998000",
     }).then((result) => {
       if (result.isConfirmed) {
@@ -101,17 +113,17 @@ function Game({ swalInstructions }) {
 
   function swalLostAlert(answer) {
     Swal.fire({
-      title: "You lost :(",
+      title: t("youLost"),
       html: `
           <p>
-            The correct answer is <strong>${answer}</strong>
+            ${t("correctAnswer")} <strong>${answer}</strong>
           </p>
         `,
       icon: "error",
       toast: true,
       position: "top-end",
       showCloseButton: true,
-      confirmButtonText: "Restart Game",
+      confirmButtonText: t("playAgain"),
       confirmButtonColor: "#998000",
     }).then((result) => {
       if (result.isConfirmed) {
