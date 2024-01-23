@@ -44,6 +44,7 @@ i18n
           youLost: "You lost 😢",
           correctAnswer: "The correct answer is",
           submitGuess: "Submit Guess",
+          selectLanguage: "Select Language",
         },
       },
       es: {
@@ -73,6 +74,7 @@ i18n
           youLost: "Perdiste 😢",
           correctAnswer: "La respuesta correcta es",
           submitGuess: "Enviar adivinanza",
+          selectLanguage: "Selecciona el idioma",
         },
       },
     },

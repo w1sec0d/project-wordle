@@ -59,11 +59,13 @@ function Header() {
     <header>
       <LanguageSelect />
       <h1>{t("gameTitle")}</h1>
-      <HelpCircle
-        size={40}
-        onClick={() => swalInstructions()}
-        className="help-svg"
-      />
+      <div className="help-icon-wrapper" title={t("instructions")}>
+        <HelpCircle
+          size={40}
+          onClick={() => swalInstructions()}
+          className="help-svg"
+        />
+      </div>
     </header>
   );
 }

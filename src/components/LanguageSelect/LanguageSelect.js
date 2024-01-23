@@ -25,7 +25,7 @@ const languageNames = {
 };
 
 function LanguageSelect() {
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   const languages = i18n.options.supportedLngs
     .filter((lang) => lang !== "cimode")
@@ -35,7 +35,7 @@ function LanguageSelect() {
     }));
 
   return (
-    <div className={styles.select}>
+    <div className={styles.select} title={t("selectLanguage")}>
       <Select
         options={languages}
         aria-label="Select Language"
