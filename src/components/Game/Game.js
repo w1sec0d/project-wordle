@@ -12,7 +12,7 @@ import GuessInput from "../GuessInput/GuessInput";
 import GuessResults from "../GuessResults/GuessResults";
 import Keyboard from "../Keyboard/Keyboard";
 
-function Game({ swalInstructions }) {
+function Game() {
   // Language Logic
   const { t, i18n } = useTranslation();
 
@@ -131,10 +131,6 @@ function Game({ swalInstructions }) {
       }
     });
   }
-
-  useEffect(() => {
-    swalInstructions();
-  }, [swalInstructions]);
 
   return (
     <>

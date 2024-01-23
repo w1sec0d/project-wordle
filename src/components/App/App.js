@@ -1,6 +1,3 @@
-// Swetalert2
-import Swal from "sweetalert2";
-
 // Custom components
 import Game from "../Game";
 import Header from "../Header";
@@ -12,54 +9,12 @@ import { I18nextProvider, useTranslation } from "react-i18next";
 function App() {
   const { t } = useTranslation();
 
-  function swalInstructions() {
-    Swal.fire({
-      title: t("instructions"),
-      html: `
-          <ul class="instruction-list">
-            <li>
-              ${t("instructions1")}
-            </li>
-            <li>
-              ${t("instructions2")}
-            </li>
-          </ul>
-          <br>
-          <div class="tutorial-wrapper">
-            <h2>${t("examples")}</h2>
-            <ul>
-              <li>
-                <p><span class="cell correct">W</span><p><strong>W</strong> ${t(
-                  "tutorial1"
-                )}</p>
-              </li>
-              <li>
-                <p><span class="cell misplaced">L</span><p><strong>L</strong> ${t(
-                  "tutorial2"
-                )}</p>
-              </li>
-              <li>
-                <p><span class="cell incorrect">Y</span><p><strong>Y</strong> ${t(
-                  "tutorial3"
-                )}</p>
-              </li>
-            </ul>
-          </div>
-
-        `,
-      icon: "info",
-      showCloseButton: true,
-      confirmButtonText: t("gotIt"),
-      confirmButtonColor: "#0a84ff",
-    });
-  }
-
   return (
     <I18nextProvider i18n={i18n}>
       <div className="wrapper">
-        <Header swalInstructions={swalInstructions} />
+        <Header />
         <div className="game-wrapper">
-          <Game swalInstructions={swalInstructions} />
+          <Game />
         </div>
         <footer>
           {t("madeIn") + " "}
