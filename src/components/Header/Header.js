@@ -50,6 +50,7 @@ function Header() {
     });
   }, [t]);
 
+  // Show instructions on first load
   useEffect(() => {
     swalInstructions();
   }, [swalInstructions]);

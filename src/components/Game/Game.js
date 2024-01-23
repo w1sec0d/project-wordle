@@ -133,7 +133,7 @@ function Game() {
   }
 
   return (
-    <>
+    <section className="game-wrapper">
       <GuessResults previousGuessesChecked={previousGuessesChecked} />
       <div className="input-wrapper">
         <GuessInput
@@ -150,7 +150,7 @@ function Game() {
           language={i18n.language}
         />
       </div>
-    </>
+    </section>
   );
 }
 
