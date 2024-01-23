@@ -43,6 +43,7 @@ i18n
           playAgain: "Play again",
           youLost: "You lost 😢",
           correctAnswer: "The correct answer is",
+          submitGuess: "Submit Guess",
         },
       },
       es: {
@@ -71,6 +72,7 @@ i18n
           playAgain: "Jugar de nuevo",
           youLost: "Perdiste 😢",
           correctAnswer: "La respuesta correcta es",
+          submitGuess: "Enviar adivinanza",
         },
       },
     },

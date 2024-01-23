@@ -46,12 +46,20 @@ function GuessInput({
           ref={inputRef}
         />
         {gameStatus === "running" && (
-          <button type="submit" className="guess-input-icon send">
+          <button
+            type="submit"
+            className="guess-input-icon send"
+            title={t("submitGuess")}
+          >
             <ArrowRight size={50} />
           </button>
         )}
         {(gameStatus === "won" || gameStatus === "lost") && (
-          <button type="submit" className="guess-input-icon reset">
+          <button
+            type="submit"
+            className="guess-input-icon reset"
+            title={t("playAgain")}
+          >
             <RefreshCcw size={40} />
           </button>
         )}
