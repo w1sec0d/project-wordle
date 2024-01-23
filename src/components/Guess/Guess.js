@@ -1,5 +1,5 @@
 import React from "react";
-import { range } from "../../utils";
+import { range } from "../../helpers/utils";
 
 function Guess({ value }) {
   return (

@@ -3,10 +3,10 @@ import React, { useState, useEffect } from "react";
 import Swal from "sweetalert2";
 import { useTranslation } from "react-i18next";
 
-import { sample } from "../../utils";
-import { WORDS } from "../../data";
-import { NUM_OF_GUESSES_ALLOWED } from "../../constants";
-import { checkGuess } from "../../game-helpers";
+import { sample } from "../../helpers/utils";
+import { WORDS } from "../../../data/data";
+import { NUM_OF_GUESSES_ALLOWED } from "../../../data/constants";
+import { checkGuess } from "../../helpers/game-helpers";
 
 import GuessInput from "../GuessInput/GuessInput";
 import GuessResults from "../GuessResults/GuessResults";

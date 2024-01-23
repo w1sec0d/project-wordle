@@ -3,7 +3,7 @@ import Game from "../Game";
 import Header from "../Header";
 
 // Translations
-import i18n from "../../i18n";
+import i18n from "../../config/i18n";
 import { I18nextProvider } from "react-i18next";
 import Footer from "../Footer/Footer";
 
