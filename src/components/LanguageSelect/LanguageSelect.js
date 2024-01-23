@@ -1,23 +1,7 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import styles from "./LanguageSelect.module.css";
-import { ChevronDown } from "react-feather";
 import Select from "react-select";
-
-function Flag({ lang = "en", isSelected = false }) {
-  let country = undefined;
-  switch (lang) {
-    case "en":
-      country = "us";
-      break;
-    case "es":
-      country = "es";
-      break;
-    default:
-      country = "us";
-  }
-  return <span className={`fi fi-${country}`}></span>;
-}
 
 const languageNames = {
   en: "🇺🇸 English",
